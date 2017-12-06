@@ -2,8 +2,6 @@
 # Day 1, Part 2
 # @geekygirlsarah
 
-import struct
-
 # Files to run through
 # input.txt being the input the puzzle provides
 inputFile = "input.txt"
