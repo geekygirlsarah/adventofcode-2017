@@ -24,26 +24,35 @@ with open(inputFile) as f:
 
         # Calculations
 
-        # The "length" of each ring
+        # Create initial lists that algorithm can use
+        list1 = [1]
+        list2 = [1, 2, 4, 5, 10, 11, 23, 25]  # these are sums
+        current = 10  # number to start at
+
+        # Calculate the 4 corner values
+
         lengthOfSide = int(ceil(sqrt(numberInput)))
         if lengthOfSide % 2 == 0:
             lengthOfSide += 1
 
-        # Maximum number in each ring
-        highestNumberOnSide = lengthOfSide * lengthOfSide
-        # Offset used for calculating midpoints of each side
-        offset = int((lengthOfSide - 1) / 2)
 
-        # Find each midpoint on each side
-        midpoints = []
-        for i in range(0, 4):
-            midpoints.append(highestNumberOnSide - (offset + (i * lengthOfSide - i)))
 
-        stepsFromRingToCenter = (lengthOfSide - 1) / 2
+        # Go through each side and calculate it
+        # Check also if a summed number exceeds the input number
 
-        for i in range(0, 4):
-            midpoints[i] = stepsFromRingToCenter + abs(numberInput - midpoints[i])
 
-        finalDistance = min(midpoints)
 
-        print("   Final distance: " + str(finalDistance))
+
+
+
+        # The "length" of this number's ring
+        # lengthOfSide = int(ceil(sqrt(numberInput)))
+        # if lengthOfSide % 2 == 0:
+        #     lengthOfSide += 1
+        #
+        # # Maximum number in each ring
+        # highestNumberOnSide = lengthOfSide * lengthOfSide
+        # # Offset used for calculating midpoints of each side
+        # offset = int((lengthOfSide - 1) / 2)
+
+
