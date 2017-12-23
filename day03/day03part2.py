@@ -1,55 +1,49 @@
 # Advent of Code 2017
-# Day 2, Part 2
+# Day 3, Part 2
 # @geekygirlsarah
+
+from math import sqrt, ceil
 
 # Files to run through
 # input.txt being the input the puzzle provides
-inputFile = "input.txt"
-# inputFile = "testinput.txt"
+
+# inputFile = "input.txt"
+inputFile = "testinput.txt"
 
 # Variables
-checksum = 0
 
 # Process file
 with open(inputFile) as f:
     while True:
-        contents = f.readline(-1)
-        if not contents:
+        numberInput = f.readline(-1)
+        if not numberInput:
             # print "End of file"
             break
-        # print ("Contents: ", contents)
+        numberInput = int(numberInput)
+        print ("Input: " + str(numberInput))
 
-        # Split
-        row_numbers = list(map(int, contents.split("\t")))
-        print("Row: " + str(row_numbers))
+        # Calculations
 
-        # Find evenly divisible numbers
-        # I'm assuming there's always at least two numbers in here. Because... well,
-        # you have to have two numbers to divide...
-        for i in range(0, len(row_numbers)):
-            for j in range(i, len(row_numbers)):
-                if i == j:
-                    continue
+        # The "length" of each ring
+        lengthOfSide = int(ceil(sqrt(numberInput)))
+        if lengthOfSide % 2 == 0:
+            lengthOfSide += 1
 
-                num1 = row_numbers[i]
-                num2 = row_numbers[j]
-                mod1 = num1 % num2
-                mod2 = num2 % num1
-                if num1 > num2 and num1 % num2 == 0:
-                    checksum += int(num1 / num2)
-                    print("Num1: " + str(num1))
-                    print("Num2: " + str(num2))
-                    print("Checksum: " + str(checksum))
-                    i = len(row_numbers)
-                    j = len(row_numbers)
-                    break
-                if num2 > num1 and num2 % num1 == 0:
-                    checksum += int(num2 / num1)
-                    print("Num1: " + str(num1))
-                    print("Num2: " + str(num2))
-                    print("Checksum: " + str(checksum))
-                    i = len(row_numbers)
-                    j = len(row_numbers)
-                    break
+        # Maximum number in each ring
+        highestNumberOnSide = lengthOfSide * lengthOfSide
+        # Offset used for calculating midpoints of each side
+        offset = int((lengthOfSide - 1) / 2)
 
-print("Final checksum: " + str(checksum))
+        # Find each midpoint on each side
+        midpoints = []
+        for i in range(0, 4):
+            midpoints.append(highestNumberOnSide - (offset + (i * lengthOfSide - i)))
+
+        stepsFromRingToCenter = (lengthOfSide - 1) / 2
+
+        for i in range(0, 4):
+            midpoints[i] = stepsFromRingToCenter + abs(numberInput - midpoints[i])
+
+        finalDistance = min(midpoints)
+
+        print("   Final distance: " + str(finalDistance))

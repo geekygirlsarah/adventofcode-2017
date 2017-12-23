@@ -1,5 +1,5 @@
 # Advent of Code 2017
-# Day 2, Part 1
+# Day 3, Part 1
 # @geekygirlsarah
 
 from math import sqrt, ceil
