@@ -25,6 +25,13 @@ with open(inputFile) as f:
         # Calculations
 
         # Create initial lists that algorithm can use
+        #    17 16 15 14 13
+        #    18  5  4  3 12
+        #    19  6  1  2 11\
+        #    20  7  8  9 10
+        #    21 22 23 24 25
+        #
+
         list1 = [1]
         list2 = [1, 2, 4, 5, 10, 11, 23, 25]  # these are sums
         current = 10  # number to start at
@@ -40,6 +47,13 @@ with open(inputFile) as f:
         # Go through each side and calculate it
         # Check also if a summed number exceeds the input number
 
+        while (True):
+            loop1counter = 0
+            loop2counter = 0
+            loop1 = loop2
+            loop2 = range(current, current + (lengthOfSide * 4))
+
+            # Side 1:
 
 
 
